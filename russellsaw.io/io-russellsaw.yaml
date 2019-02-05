@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: io-russellsaw
+  labels:
+    app: io-russellsaw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: io-russellsaw
+  template:
+    metadata:
+      labels:
+        app: io-russellsaw
+    spec:
+      containers:
+      - name: nginx
+        image: arussellsaw/io-russellsaw:latest
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: io-russellsaw
+spec:
+  selector:
+    app: io-russellsaw
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: traefik
+  name: io-russellsaw
+  namespace: default
+spec:
+  rules:
+  - host: russellsaw.io
+    http:
+      paths:
+      - backend:
+          serviceName: io-russellsaw
+          servicePort: 80
+        path: /

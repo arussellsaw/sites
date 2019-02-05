@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="ytplayer"></div>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '100%',
+      width: '100%',
+      videoId: 'jGUn-rOl_9s',
+      playerVars: { 'autoplay': 1, 'controls': 0, 'html5': 1 },
+    });
+  }
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73426603-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- Avocet Secure Image Pixel - cat enthusiast - 579b5857b9c63dfc66af913f -->
+<img src="https://ads.avocet.io/s?add=579b5857b9c63dfc66af913f" />
+<!-- end -->
+</body>
+</html>

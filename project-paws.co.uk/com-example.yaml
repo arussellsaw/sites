@@ -1,50 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cat-yaas
+  name: com-example
   labels:
-    app: cat-yaas
+    app: com-example
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: cat-yaas
+      app: com-example
   template:
     metadata:
       labels:
-        app: cat-yaas
+        app: com-example
     spec:
       containers:
       - name: nginx
-        image: arussellsaw/cat-yaas:latest
+        image: arussellsaw/com-example:latest
         ports:
         - containerPort: 80
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: cat-yaas
+  name: com-example
 spec:
   selector:
-    app: cat-yaas
+    app: com-example
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 80
+    targetPort: 80
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-  name: cat-yaas
+  name: com-example
   namespace: default
 spec:
   rules:
-  - host: yaas.cat
+  - host: example.com
     http:
       paths:
       - backend:
-          serviceName: cat-yaas
+          serviceName: com-example
           servicePort: 80
         path: /
